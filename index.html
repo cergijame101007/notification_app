@@ -1,0 +1,41 @@
+<!-- save as index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>温度グラフ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 2em;
+        }
+
+        canvas {
+            max-width: 10000px;
+        }
+
+        #accum-text {
+            font-size: 3em;
+            margin-bottom: 1em;
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>温度グラフ</h1>
+    <div id="accum-text">積算温度：読み込み中...</div>
+    <canvas id="tempChart" width="800" height="400"></canvas>
+    <label>開始時刻：</label>
+    <input type="datetime-local" id="start-time">
+
+    <label>終了時刻：</label>
+    <input type="datetime-local" id="end-time">
+
+    <button onclick="getAndPlotData()">グラフを表示</button>
+</body>
+
+</html>
