@@ -3,3 +3,4 @@ uvicorn
 requests
 fastapi-utils
 typing-inspect
+python-dotenv
