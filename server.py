@@ -78,7 +78,7 @@ def gmail_notification(accumulative_temperature):
         print(f"\u274C メール送信エラー: {e}")
 
 def process_data():
-    """_summary_
+    """
     保存されている温度データを読み取り、時刻と温度を分離して返す
 
     Returns:
@@ -223,8 +223,6 @@ async def accumulative_temperature_check():
     """
     print("自動で積算温度をチェック中")
     calculate_accumulative_temperature()
-    print("アドレス:", EMAIL_ADDRESS)
-    print("パスワード:", EMAIL_PASSWORD)
     
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -7,7 +7,12 @@ import logging
 import argparse
 from pathlib import Path
 
-SERVER_URL = "http://10.200.234.152:8000/temperature/"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SERVER_URL = os.getenv("SERVER_URL")
 LOCAL_BACKUP_FILE = Path("unsent_data.json")
 INTERVAL = 30 
 
