@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Request
 import uvicorn
 from pydantic import BaseModel
 import json
 from pathlib import Path
 import requests
+from fastapi.templating import Jinja2Templates
 from datetime import datetime, timedelta
 import logging
 import smtplib
@@ -19,6 +20,8 @@ from dotenv import load_dotenv
 from models import Base, engine, SessionLocal, Temperature
 from sqlalchemy.orm import Session
 
+from fastapi.staticfiles import StaticFiles
+
 app = FastAPI()
 
 load_dotenv()
@@ -31,6 +34,9 @@ LOG_FILE = os.getenv("LOG_FILE", "temperature_log.txt")
 NOTIFY_FLAG_FILE = Path("notified.flag")
 if not NOTIFY_FLAG_FILE.exists():
     NOTIFY_FLAG_FILE.write_text("0")  
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 """
 テスト環境下では255℃ (任意の温度)
@@ -308,5 +314,9 @@ async def accumulative_temperature_check(db: Session = Depends(get_db)):
     """
     log_message("info", "check accumulative temperature")
     calculate_accumulative_temperature(db)
+
+@app.get("/view")
+async def render_view(request: Request):
+    return templates.TemplateResponse("view.html", {"request": request})
  
 Base.metadata.create_all(bind=engine)

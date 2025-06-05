@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>温度推移可視化</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1"></script>
+    <script src="/static/app.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 2em;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        #accum-text {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>温度推移</h1>
+    <div id="accum-text">積算温度：読み込み中...</div>
+    <canvas id="temperatureChart" width="800" height="400"></canvas>
+</body>
+
+</html>
