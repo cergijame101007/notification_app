@@ -4,3 +4,5 @@ requests
 fastapi-utils
 typing-inspect
 python-dotenv
+sqlalchemy
+jinja2

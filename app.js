@@ -1,29 +1,11 @@
-// async function getData() {
-//     const url = "https://accumulatenotification-app.onrender.com/temperature/"
-//     try {
-//         const response = await fetch(url);
-//         if (!response.ok) {
-//             throw new Error(`レスポンスステータス: ${response.status}`);
-//         }
-
-//         const temperatureJson = await response.json();
-//         console.log(temperatureJson);
-//     } catch (error) {
-//         console.error(error.message)
-//     }
-// }
-// window.onload = getData;
-
 async function getAndPlotData() {
-    const dataUrl = "https://accumulatenotification-app.onrender.com/temperature/";
-    const accumUrl = "https://accumulatenotification-app.onrender.com/accumulative_temperature/";
+    const dataUrl = "https://notification-app-0whl.onrender.com/temperature/";
+    const accumUrl = "https://notification-app-0whl.onrender.com/accumulative_temperature/";
     try {
-        // 温度データ取得
         const response = await fetch(dataUrl);
         if (!response.ok) throw new Error(`温度データ取得失敗: ${response.status}`);
         const temperatureJson = await response.json();
 
-        // 積算温度取得
         const accumResponse = await fetch(accumUrl);
         if (!accumResponse.ok) throw new Error(`積算温度取得失敗: ${accumResponse.status}`);
         const accumData = await accumResponse.json();
@@ -32,7 +14,6 @@ async function getAndPlotData() {
         const temperatures = temperatureJson.map(entry => entry.temperature);
         const accumValue = accumData.accumulative_temperature.toFixed(2);
 
-        // テキストに積算温度を表示
         document.getElementById("accum-text").textContent = `積算温度：${accumValue} ℃`;
 
         // グラフ描画
